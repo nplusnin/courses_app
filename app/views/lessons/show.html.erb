@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to "<<- Back to course", @lesson.course %>
+
+<h1><%= @lesson.course.title %> / <%= @lesson.title %></h1>
+
+<p>
+  <%= @lesson.body %>
+</p>
+
+<p>
+  <iframe width="100%" height="600" src="<%= @lesson.you_tube_link %>" frameborder="0" allowfullscreen></iframe>
+</p>
+
+<%= link_to 'Edit', edit_lesson_path(@lesson), class: "btn btn-warning" %>
