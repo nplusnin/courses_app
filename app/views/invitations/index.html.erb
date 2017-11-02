@@ -1,0 +1,26 @@
+<%= link_to "<<- Back to course", @course %>
+
+<h1>Send invitation</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>e-Mail</th>
+      <th style="width: 100px;">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <td>
+          <% if @course.user_ids.include?(user.id) %>
+            <%= link_to 'throw out', invitation_path(user, course_id: @course), class: "btn btn-xs btn-danger", method: :delete %>
+          <% else %>
+            <%= link_to 'invite', course_invitations_path(@course, user_id: user.id), class: "btn btn-xs btn-success", method: :post %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>

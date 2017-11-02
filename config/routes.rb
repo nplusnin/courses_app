@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
+  devise_for :users
+
   resources :courses, path: '/', shallow: true do
     resources :lessons, except: [:index]
-    resources :invitation, only: [:index, :create, :destroy]
+    resources :invitations, only: [:index, :create, :destroy], param: :user_id
   end
 
-  devise_for :users
+  root to: 'courses#index'
 end

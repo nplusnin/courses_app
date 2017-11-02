@@ -12,6 +12,11 @@
   <%= link_to 'Edit', edit_course_path(@course), class: "btn btn-warning" %>
 <% end %>
 
+<% if policy(CourseUser).index? %>
+  <%= link_to 'Invitation', course_invitations_path(@course), class: "btn btn-success" %>
+<% end %>
+
+
 <h2>Lessons</h2>
 
 <table class="table">
@@ -41,4 +46,5 @@
 <% if policy(Lesson).new? %>
   <%= link_to "Create lesson", new_course_lesson_path(@course), class: "btn btn-success" %>
 <% end %>
+
 

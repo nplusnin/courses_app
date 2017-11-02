@@ -2,7 +2,7 @@ class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
 
   def index
-    @courses = Course.all
+    @courses = CoursePolicy::Scope.new(current_user, Course).resolve
     authorize @courses
   end
 
