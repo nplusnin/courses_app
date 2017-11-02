@@ -1,0 +1,18 @@
+<h1>Send invitation</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>e-Mail</th>
+      <th style="width: 100px;">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <td><%= link_to 'invite', '#', class: "btn btn-xs btn-success" %></td>
+      </tr>
+    <% end %>
+  </tbody>
