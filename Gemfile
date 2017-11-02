@@ -16,6 +16,8 @@ gem 'jbuilder', '~> 2.5'
 
 # frontend
 gem 'bootstrap-sass'
+gem 'jquery-rails'
+gem 'simple_form'
 
 # auth
 gem 'devise'
