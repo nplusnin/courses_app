@@ -8,7 +8,9 @@
   <%= @course.body %>
 </p>
 
-<%= link_to 'Edit', edit_course_path(@course), class: "btn btn-warning" %>
+<% if policy(@course).edit? %>
+  <%= link_to 'Edit', edit_course_path(@course), class: "btn btn-warning" %>
+<% end %>
 
 <h2>Lessons</h2>
 
@@ -24,14 +26,19 @@
       <tr>
         <td><%= link_to lesson.title, lesson %></td>
         <td style="width: 200px; text-align: right;">
-          <%= link_to 'Edit', edit_lesson_path(lesson), class: "btn btn-xs btn-warning" %>
-          <%= link_to 'Destroy', lesson, method: :delete, data: { confirm: 'Are you sure?' },
-           class: "btn btn-xs btn-danger" %>
+          <% if policy(lesson).edit? %>
+            <%= link_to 'Edit', edit_lesson_path(lesson), class: "btn btn-xs btn-warning" %>
+          <% end %>
+          <% if policy(lesson).destroy? %>
+            <%= link_to 'Destroy', lesson, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger" %>
+          <% end %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= link_to "Create lesson", new_course_lesson_path(@course), class: "btn btn-success" %>
+<% if policy(Lesson).new? %>
+  <%= link_to "Create lesson", new_course_lesson_path(@course), class: "btn btn-success" %>
+<% end %>
 

@@ -15,8 +15,12 @@
       <tr>
         <td><%= link_to course.title, course %></td>
         <td style="width: 200px; text-align: right;">
-          <%= link_to 'Edit', edit_course_path(course), class: "btn btn-xs btn-warning" %>
-          <%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger" %>
+          <% if policy(Course).edit? %>
+            <%= link_to 'Edit', edit_course_path(course), class: "btn btn-xs btn-warning" %>
+          <% end %>
+          <% if policy(Course).destroy? %>
+            <%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger" %>
+          <% end %>
         </td>
       </tr>
     <% end %>
@@ -25,4 +29,6 @@
 
 <br>
 
-<%= link_to 'New Course', new_course_path, class: "btn btn-default" %>
+<% if policy(Course).new? %>
+  <%= link_to 'New Course', new_course_path, class: "btn btn-default" %>
+<% end %>

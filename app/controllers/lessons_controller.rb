@@ -3,17 +3,21 @@ class LessonsController < ApplicationController
   before_action :set_lesson, only: [:show, :edit, :update, :destroy]
 
   def show
+    authorize @lesson
   end
 
   def new
     @lesson = Lesson.new
+    authorize @lesson
   end
 
   def edit
+    authorize @lesson
   end
 
   def create
     @lesson = Lesson.new(lesson_params.merge(course: @course))
+    authorize @lesson
 
     respond_to do |format|
       if @lesson.save
@@ -25,6 +29,8 @@ class LessonsController < ApplicationController
   end
 
   def update
+    authorize @lesson
+
     respond_to do |format|
       if @lesson.update(lesson_params)
         format.html { redirect_to @lesson, notice: 'Lesson was successfully updated.' }
@@ -35,6 +41,8 @@ class LessonsController < ApplicationController
   end
 
   def destroy
+    authorize @lesson
+    
     @lesson.destroy
     respond_to do |format|
       format.html { redirect_to @lesson.course, notice: 'Lesson was successfully destroyed.' }
